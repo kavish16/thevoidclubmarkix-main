@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Incognito | It's Time You Rise!</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="../assets/img/favicon.jpg" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/events-style.css">
+
+  <style>
+    .container {
+      max-width: 1140px;
+      padding: 0 15px;
+      margin: 0 auto;
+    }
+    
+    .event-details-slider {
+      max-width: 90%;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .event-info {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      height: auto;
+      min-height: 280px;
+    }
+
+    .event-info h3 {
+      color: #4e54c8;
+      margin-bottom: 15px;
+      font-weight: 700;
+      text-align: center;
+      font-size: 1.3rem;
+    }
+
+    .event-info ul {
+      padding-left: 15px;
+      margin-bottom: 0;
+    }
+
+    .event-info li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .general-guidelines-ul {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    .general-guidelines-ul li {
+      padding-left: 1em;
+      text-indent: -1em;
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    .section-header {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .section-divider {
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #4e54c8, #8f94fb);
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .criteria-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .criteria-card:hover {
+      transform: translateY(-5px);
+      background: rgba(78, 84, 200, 0.15);
+    }
+
+    .criteria-card h4 {
+      color: #4e54c8;
+      margin-bottom: 15px;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .criteria-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: white;
+    }
+
+    .tech-icon {
+      font-size: 2rem;
+      color: #4e54c8;
+      margin-bottom: 15px;
+    }
+
+    .event-title {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+      margin: 20px 0;
+    }
+
+    .event-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #4e54c8, #8f94fb);
+      border-radius: 2px;
+    }
+
+    .round-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .round-title {
+      color: #4e54c8;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .deliverable-list {
+      list-style-type: none;
+      padding-left: 0;
+      text-align: center;
+    }
+
+    .deliverable-list li {
+      margin-bottom: 10px;
+      font-weight: 500;
+      color: #4e54c8;
+    }
+    
+    @media (max-width: 768px) {
+      .criteria-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .event-info {
+        margin-top: 20px;
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loader_bg">
+    <div class="loader"></div>
+  </div>
+
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="logo">
+        <img src="../assets/img/navbar-logo.png" alt="" class="img-fluid">
+      </div>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="../index.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="../index.html#about">About</a></li>
+          <li><a class="nav-link scrollto" href="../index.html#event">Events</a></li>
+          <li><a class="nav-link scrollto" href="../register">Registrations</a></li>
+          <li><a class="nav-link scrollto" href="../index.html#contact">Contact Us</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" data-aos="fade-up">
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2 class="event-title">COGNITOFLOW</h2>
+        </div>
+      </div>
+    </section>
+
+    <section id="event-details" class="event-details">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-7">
+            <div class="event-details-slider swiper-container">
+              <div class="swiper-wrapper align-items-center">
+                <div class="swiper-slide">
+                  <img src="../assets/img/event/cognitoflow.webp" alt="CognitoFlow" class="img-fluid">
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="event-info">
+              <h3>Event Details</h3>
+              <ul>
+                <li><strong>Domain:</strong> Open</li>
+                <li><strong>Participants:</strong> 2 per team</li>
+                <li><strong>Mode:</strong> Hybrid (Online Prelims + Offline Finals)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="event">
+      <div class="container">
+        <div class="section-header">
+          <h3 class="section-title">General Guidelines</h3>
+          <span class="section-divider"></span>
+        </div>
+
+        <div class="round-card">
+          <h4 class="round-title">Prelims</h4>
+          <ul class="general-guidelines-ul">
+            <li>Participants must design an innovative solution incorporating AI or other emerging technologies to help people with learning or physical disabilities assimilate into their environment.</li>
+            <li>The solution should aim to increase efficiency and accessibility in their everyday lives.</li>
+            <li>Teams must submit only one deliverable from the following options:</li>
+            <ul class="deliverable-list">
+              <li>3D Model or Digital Image</li>
+              <li>Promotional Graphics or Explainer Video (45 seconds - 1.5 minutes)</li>
+              <li>Pitch deck or Website/App Mock-up</li> 
+            </ul>
+            <li>The link and date for submission will be disclosed on the Incognito website.</li>
+          </ul>
+        </div>
+
+        <div class="round-card">
+          <h4 class="round-title">Finals</h4>
+          <ul class="general-guidelines-ul">
+            <li>Shortlisted teams will receive a new topic at the venue and will be provided with the required research material on the spot.</li>
+            <li>They have to fabricate an idea/solution for it, Incorporating AI or other emerging technologies in 45 minutes.</li>
+            <li>Each team will then be given 3 minutes to explain their concept before the judges on the whiteboard or in the form of a PPT/model on the smartboard provided by our school.</li>
+            <li>Use of AI, internet, or any unfair means will result in immediate disqualification.</li>
+            <li>Participants have to bring their own laptops and will not be allowed to use any other electronics.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="event">
+      <div class="container">
+        <div class="section-header">
+          <h3 class="section-title">Judgement Criteria</h3>
+          <span class="section-divider"></span>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="criteria-grid">
+               <div class="criteria-card">
+                <i class="bi bi-bar-chart-line-fill" style="color: #007bff;"></i>
+
+
+                <h4>Score</h4>
+                <p>Evaluation Point System</p>
+              </div>
+              <div class="criteria-card">
+                <i class="bi bi-lightbulb tech-icon"></i>
+                <h4>Innovation & Uniqueness</h4>
+                <p>Originality of the proposed solution</p>
+              </div>
+              <div class="criteria-card">
+                <i class="bi bi-check-circle tech-icon"></i>
+                <h4>Feasibility & Practicality</h4>
+                <p>Real-world applicability of the solution</p>
+              </div>
+              <div class="criteria-card">
+                <i class="bi bi-presentation tech-icon"></i>
+                <h4>Presentation Quality</h4>
+                <p>Clarity and effectiveness of explanation</p>
+              </div>
+              <div class="criteria-card">
+                <i class="bi bi-gear tech-icon"></i>
+                <h4>Execution</h4>
+                <p>Implementation of technical components</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <div class="container">
+        <div class="section-header">
+          <h3 class="section-title">The Void Club</h3>
+          <span class="section-divider"></span>
+        </div>
+        <p>It's Time You Rise!</p>
+        <div class="social-links">
+          <a href="../discord" class="discord"><i class="bx bxl-discord"></i></a>
+          <a href="https://www.facebook.com/thevoidssn/" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.instagram.com/thevoidclub/" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="https://www.youtube.com/c/thevoidssn" class="youtube"><i class="bx bxl-youtube"></i></a>
+        </div>
+        <div class="copyright">
+          &copy; Copyright <strong><span>The Void Club</span></strong>. All Rights Reserved
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/js/index.js"></script>
+
+  <!-- Loader JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    setTimeout(function () {
+      $('.loader_bg').fadeToggle();
+    }, 1500);
+  </script>
+</body>
+</html>

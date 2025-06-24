@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Incognito | It's Time You Rise!</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="../assets/img/favicon.jpg" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/events-style.css">
+
+  <style>
+    .container {
+      max-width: 1140px;
+      padding: 0 15px;
+      margin: 0 auto;
+    }
+    
+    .event-details-slider {
+      max-width: 90%; /* Changed from 100% to match Webbed */
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .event-info {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      height: auto;
+      min-height: 280px;
+    }
+
+    .event-info h3 {
+      color: #4e54c8;
+      margin-bottom: 15px;
+      font-weight: 700;
+      text-align: center;
+      font-size: 1.3rem;
+    }
+
+    .event-info ul {
+      padding-left: 15px;
+      margin-bottom: 0;
+    }
+
+    .event-info li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .general-guidelines-ul {
+      padding-left: 20px;
+      margin-bottom: 0;
+    }
+
+    .general-guidelines-ul li {
+      padding-left: 1em;
+      text-indent: -1em;
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    .section-header {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .section-divider {
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #4e54c8, #8f94fb);
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .criteria-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .criteria-card:hover {
+      transform: translateY(-5px);
+      background: rgba(78, 84, 200, 0.15);
+    }
+
+    .criteria-card h4 {
+      color: #4e54c8;
+      margin-bottom: 15px;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .criteria-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: white;
+    }
+
+    .discussion-icon {
+      font-size: 2rem;
+      color: #4e54c8;
+      margin-bottom: 15px;
+    }
+
+    .event-title {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+      margin: 20px 0;
+    }
+
+    .event-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #4e54c8, #8f94fb);
+      border-radius: 2px;
+    }
+
+    .round-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .round-title {
+      color: #4e54c8;
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .criteria-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .event-info {
+        margin-top: 20px;
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loader_bg">
+    <div class="loader"></div>
+  </div>
+
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="logo">
+        <img src="../assets/img/navbar-logo.png" alt="" class="img-fluid">
+      </div>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="../index.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="../index.html#about">About</a></li>
+          <li><a class="nav-link scrollto" href="../index.html#event">Events</a></li>
+          <li><a class="nav-link scrollto" href="../register">Registrations</a></li>
+          <li><a class="nav-link scrollto" href="../index.html#contact">Contact Us</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" data-aos="fade-up">
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2 class="event-title">Group Discussion</h2>
+        </div>
+      </div>
+    </section>
+
+    <section id="event-details" class="event-details">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-7">
+            <div class="event-details-slider swiper-container">
+              <div class="swiper-wrapper align-items-center">
+                <div class="swiper-slide">
+                  <img src="../assets/img/event/GD.png" alt="Group Discussion" class="img-fluid">
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="event-info">
+              <h3>Event Details</h3>
+              <ul>
+                <li><strong>Domain:</strong> IX - XII</li>
+                <li><strong>Participants:</strong> 1 per team</li>
+                <li><strong>Mode:</strong> Offline</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="event">
+      <div class="container">
+        <div class="section-header">
+          <h3 class="section-title">General Guidelines</h3>
+          <span class="section-divider"></span>
+        </div>
+
+        <div class="round-card">
+          <ul class="general-guidelines-ul">
+            <li>Many voices, one truth - the veiled truth behind each discovery, The stark sad reality masked in glitzy glamour and the future of technology yet to be unfolded. Our participants will reveal all this and much more.</li>
+            <li>Participants have to openly deliberate on a topic and express their views about potential hazards, profits, statistics and their opinion in a friendly group discussion.</li>
+            <li>The topic will be provided on the spot.</li>
+            <li>Participants are required to be well-versed in every field of human-AI endeavours.</li>
+            <li>Research sheets are not allowed once the event starts.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="event">
+      <div class="container">
+        <div class="section-header">
+          <h3 class="section-title">Judgement Criteria</h3>
+          <span class="section-divider"></span>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="criteria-grid">
+              <div class="criteria-card">
+                <i class="bi bi-file-text discussion-icon"></i>
+                <h4>Content Relevance and Accuracy</h4>
+                <p>topic relevance</p>
+              </div>
+              <div class="criteria-card">
+                <i class="bi bi-megaphone discussion-icon"></i>
+                <h4>Clarity and Articulation</h4>
+                <p>Articulation and expression</p>
+              </div>
+              <div class="criteria-card">
+                <i class="bi bi-lightbulb discussion-icon"></i>
+                <h4>Critical Thinking and Originality</h4>
+                <p>Depth of analysis</p>
+              </div>
+              <div class="criteria-card">
+                <i class="bi bi-people discussion-icon"></i>
+                <h4>Team Dynamics and Participation</h4>
+                <p>interaction</p>
+              </div>
+              <div class="criteria-card">
+                <i class="bi bi-chat-square-text discussion-icon"></i>
+                <h4>Responsiveness and Truth delivery</h4>
+                <p>engagement</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <div class="container">
+        <div class="section-header">
+          <h3 class="section-title">The Void Club</h3>
+          <span class="section-divider"></span>
+        </div>
+        <p>It's Time You Rise!</p>
+        <div class="social-links">
+          <a href="../discord" class="discord"><i class="bx bxl-discord"></i></a>
+          <a href="https://www.facebook.com/thevoidssn/" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.instagram.com/thevoidclub/" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="https://www.youtube.com/c/thevoidssn" class="youtube"><i class="bx bxl-youtube"></i></a>
+        </div>
+        <div class="copyright">
+          &copy; Copyright <strong><span>The Void Club</span></strong>. All Rights Reserved
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/js/index.js"></script>
+
+  <!-- Loader JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    setTimeout(function () {
+      $('.loader_bg').fadeToggle();
+    }, 1500);
+  </script>
+</body>
+</html>
