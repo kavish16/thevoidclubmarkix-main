@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incognito | Event Registration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <link href="assets/img/favicon.jpg" rel="icon">
+  <style>
+    :root {
+      --primary: #7e22ce;
+      --primary-dark: #6b21a8;
+      --secondary: #a855f7;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #94a3b8;
+      --success: #10b981;
+      --error: #ef4444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1e1e1e, #000000, #2e1065);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: var(--light);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .container {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      width: 100%;
+      max-width: 1000px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .header {
+      background: #000;
+      text-align: center;
+      padding: 30px;
+      position: relative;
+      border-bottom: 3px solid var(--secondary);
+    }
+
+    .header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #a855f7, #e879f9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: rgba(30, 41, 59, 0.6);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      background: rgba(30, 41, 59, 0.8);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card i {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: var(--secondary);
+    }
+
+    .card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .form-section {
+      background: rgba(30, 41, 59, 0.7);
+      border-radius: 15px;
+      padding: 30px;
+      margin-top: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-section h3 {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .form-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: var(--secondary);
+      border-radius: 2px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--gray);
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+      width: 100%;
+      padding: 14px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: var(--light);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .input-group input:focus,
+    .input-group select:focus,
+    .input-group textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3);
+    }
+
+    .btn {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(126, 34, 206, 0.3);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .events-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .event-card {
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 15px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .event-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .token-display {
+      text-align: center;
+      padding: 50px 30px;
+    }
+
+    .token-display i {
+      font-size: 4rem;
+      color: var(--success);
+      margin-bottom: 20px;
+    }
+
+    .token-display h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .token {
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 5px;
+      background: linear-gradient(90deg, var(--success), #22c55e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 30px 0;
+      padding: 15px;
+      border: 2px dashed rgba(16, 185, 129, 0.3);
+      border-radius: 10px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .copy-btn {
+      background: rgba(15, 23, 42, 0.6);
+      border: none;
+      color: var(--light);
+      padding: 8px 15px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .copy-btn:hover {
+      background: rgba(15, 23, 42, 0.9);
+      transform: translateY(-2px);
+    }
+
+    .copy-btn.copied {
+      background: var(--success);
+      color: white;
+    }
+
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 50px;
+      background: var(--dark);
+      border-left: 4px solid var(--secondary);
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+      max-width: calc(100% - 40px);
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    .notification.error {
+      border-left-color: var(--error);
+    }
+
+    .notification.success {
+      border-left-color: var(--success);
+    }
+
+    .progress-bar {
+      height: 5px;
+      background: var(--secondary);
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      animation: progress 3s linear forwards;
+    }
+
+    .notification.error .progress-bar {
+      background: var(--error);
+    }
+
+    .notification.success .progress-bar {
+      background: var(--success);
+    }
+
+    @keyframes progress {
+      from {
+        width: 100%;
+      }
+
+      to {
+        width: 0%;
+      }
+    }
+
+    .back-btn {
+      background: rgba(30, 41, 59, 0.6);
+      border: none;
+      color: var(--gray);
+      padding: 10px 20px;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      color: var(--light);
+      background: rgba(30, 41, 59, 0.9);
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.02);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .glow {
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+    }
+
+    .event-icon {
+      background: rgba(126, 34, 206, 0.2);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--secondary);
+    }
+
+    .tech-icon {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: var(--secondary);
+    }
+
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .radio-option input[type="radio"] {
+      width: auto;
+      margin: 0;
+      padding: 0;
+      accent-color: var(--secondary);
+      cursor: pointer;
+    }
+
+    .radio-option label {
+      margin: 0;
+      color: var(--light);
+      cursor: pointer;
+    }
+
+    .class-input {
+      margin-top: 10px;
+    }
+
+    .class-input input {
+      width: 100%;
+    }
+
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin-right: 10px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Responsive improvements */
+    @media (max-width: 768px) {
+      .content {
+        padding: 25px;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .header p {
+        font-size: 1rem;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .events-container {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+
+      }
+
+      .notification {
+        max-width: calc(100% - 40px);
+      }
+
+      .token {
+        font-size: 1.8rem;
+
+        letter-spacing: 3px;
+      }
+
+      .token-display {
+        padding: 30px 15px;
+      }
+
+      .token-display h3 {
+        font-size: 1.5rem;
+      }
+
+      .event-card h4 {
+        font-size: 1.2rem;
+      }
+
+      .input-group input,
+      .input-group select,
+      .input-group textarea {
+        padding: 12px;
+      }
+
+      .small-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 20px;
+      }
+
+      .header h1 {
+        font-size: 1.8rem;
+      }
+
+      .content {
+        padding: 15px;
+      }
+
+      .form-section {
+        padding: 20px;
+      }
+
+      .token {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+      }
+
+      .radio-group {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    .small-btn {
+      padding: 12px 25px;
+      font-size: 1rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header pulse">
+      <h1>INCOGNITO</h1>
+      <p>It's Time You Rise! Register for the most anticipated tech events of the year</p>
+    </div>
+
+    <div class="content">
+      <div id="choice">
+        <h2>Welcome to Event Registration</h2>
+        <p>Choose an option to get started:</p>
+
+        <div class="card-grid">
+          <div class="card glow" onclick="showRegister()">
+            <div class="tech-icon"><i class="fas fa-user-plus"></i></div>
+            <h3>Register</h3>
+            <p>Start a new registration for your school and participants</p>
+          </div>
+
+          <div class="card glow" onclick="showEdit()">
+            <div class="tech-icon"><i class="fas fa-edit"></i></div>
+            <h3>Edit Registration</h3>
+            <p>Use your token to update existing registration details</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="tokenInput" class="hidden">
+        <button class="back-btn" onclick="goBack()">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+
+        <div class="form-section">
+          <h3>Enter Your Token ID</h3>
+          <div class="input-group">
+            <label>Your Registration Token</label>
+            <input type="text" id="tokenField" placeholder="Enter your token">
+          </div>
+          <button class="btn" onclick="verifyTokenAndLoadForm()">
+            <i class="fas fa-key"></i> Verify Token
+          </button>
+        </div>
+      </div>
+
+      <div id="registrationForm" class="hidden">
+        <button class="back-btn" onclick="goBack()">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+
+        <div class="form-section">
+          <h3>School & Teacher Details</h3>
+
+          <div class="form-grid">
+            <div class="input-group">
+              <label>School Name</label>
+              <input type="text" placeholder="Enter school name" id="schoolName" required>
+            </div>
+
+            <div class="input-group">
+              <label>School Email</label>
+              <input type="email" placeholder="school@example.com" id="schoolEmail" required>
+            </div>
+
+            <div class="input-group">
+              <label>Teacher In-Charge Name</label>
+              <input type="text" placeholder="Teacher's full name" id="teacherName" required>
+            </div>
+
+            <div class="input-group">
+              <label>Teacher Email</label>
+              <input type="email" placeholder="teacher@example.com" id="teacherEmail" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Select Events</h3>
+          <div id="eventsList" class="events-container"></div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+          <!--for new registrations-->
+          <button class="btn" id="submitBtn" onclick="submitForm()">
+            <i class="fas fa-paper-plane"></i> Submit Registration
+          </button>
+          <!-- For editing an existing registration (after token verification) -->
+          <button class="btn hidden" id="editSubmitBtn" onclick="handleEditTokenSubmit()">
+            <i class="fas fa-save"></i> Submit Changes
+          </button>
+        </div>
+      </div>
+
+      <div id="tokenDisplay" class="hidden">
+        <div class="token-display" style="text-align: center; padding: 20px; max-width: 600px; margin: 0 auto;">
+          <i class="fas fa-check-circle" style="font-size: 40px; color: green;"></i>
+          <h3 style="margin: 10px 0;">Registration Successful!</h3>
+          <p style="margin-bottom: 15px;">Your registration has been processed successfully. Please save your token for
+            future reference.</p>
+
+          <div id="generatedToken" class="token"
+            style="margin: 0 auto 20px auto; padding: 10px 20px; border: 2px dashed #007BFF; font-size: 18px; font-weight: bold; display: inline-block; word-wrap: break-word; max-width: 100%; box-sizing: border-box;">
+          </div>
+
+          <p style="margin-bottom: 20px;">You can use this token to edit your registration details later.</p>
+
+          <button class="btn" onclick="location.reload()"
+            style="font-size: 14px; padding: 6px 14px; border-radius: 6px; background-color: #007BFF; color: white; border: none; cursor: pointer;">
+            <i class="fas fa-home" style="margin-right: 6px;"></i>Return to Home
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="notification" id="notification">
+    <div id="notificationMessage"></div>
+    <div class="progress-bar"></div>
+  </div>
+
+  <script>
+    const EVENT_IDS = {
+      JrProg: 0, SrProg: 1, SherLocked: 2, Webbed: 3, Scratch: 4,
+      Dance: 5, Cognitoflow: 6, Gaming: 7, ReelRumble: 8,
+      GroupDisc: 9, Surprise: 10, Photoshop: 11, FrameWars: 12,
+      SrRobotics: 13, Quiz: 14, Postux: 15
+    };
+
+    const events = [
+      { id: EVENT_IDS.Postux, name: 'Tux Tales', classes: [2, 3], teamSize: 2, icon: 'fa-terminal' },
+      { id: EVENT_IDS.Scratch, name: 'Sprite Showdown', classes: [4, 5], teamSize: 1, icon: 'fa-gamepad' },
+      { id: EVENT_IDS.Webbed, name: 'Webbed', classes: [8, 9, 10], teamSize: 1, icon: 'fa-code-branch' },
+      { id: EVENT_IDS.SrProg, name: 'Zen of Code', classes: [8, 9, 10], teamSize: 2, icon: 'fa-laptop-code' },
+      { id: EVENT_IDS.ReelRumble, name: 'Reel Rumble', classes: [9, 10, 11, 12], teamSize: 2, icon: 'fa-video' },
+      { id: EVENT_IDS.FrameWars, name: 'Frame Wars', classes: [9, 10, 11, 12], teamSize: 1, icon: 'fa-image' },
+      { id: EVENT_IDS.SrRobotics, name: 'Overclocked', classes: [9, 10, 11, 12], teamSize: 5, icon: 'fa-microchip' },
+      { id: EVENT_IDS.Quiz, name: 'Quiz', classes: [9, 10, 11, 12], teamSize: 2, icon: 'fa-question-circle' },
+      { id: EVENT_IDS.GroupDisc, name: 'Group Discussion', classes: [9, 10, 11, 12], teamSize: 1, icon: 'fa-comments' },
+      { id: EVENT_IDS.JrProg, name: 'PyRank Showdown', classes: [11, 12], teamSize: 2, icon: 'fa-python' },
+      { id: EVENT_IDS.SherLocked, name: 'Maze and Mayhem', classes: [], teamSize: 2, icon: 'fa-project-diagram' },
+      { id: EVENT_IDS.Photoshop, name: 'Lens and Layers', classes: [], teamSize: 2, icon: 'fa-camera-retro' },
+      { id: EVENT_IDS.Surprise, name: 'Surprise', classes: [], teamSize: 1, icon: 'fa-gift' },
+      { id: EVENT_IDS.Dance, name: 'Byte the Rhythm', classes: [], teamSize: 6, icon: 'fa-music' },
+      { id: EVENT_IDS.Cognitoflow, name: 'Cognitoflow', classes: [], teamSize: 2, icon: 'fa-brain' }
+    ];
+
+    function showNotification(message, isError = false) {
+      const notification = document.getElementById('notification');
+      const messageEl = document.getElementById('notificationMessage');
+      messageEl.textContent = message;
+      notification.classList.remove('error', 'success');
+      notification.classList.add(isError ? 'error' : 'success', 'show');
+      setTimeout(() => notification.classList.remove('show'), 3000);
+    }
+
+    function goBack() {
+      document.getElementById('tokenInput').classList.add('hidden');
+      document.getElementById('registrationForm').classList.add('hidden');
+      document.getElementById('tokenDisplay').classList.add('hidden');
+      document.getElementById('choice').classList.remove('hidden');
+    }
+
+    function showRegister() {
+
+      document.getElementById('choice').classList.add('hidden');
+      generateEventsForm();
+      document.getElementById('registrationForm').classList.remove('hidden');
+      document.getElementById('submitBtn').classList.remove('hidden');
+      document.getElementById('editSubmitBtn').classList.add('hidden');
+
+    }
+
+    function showEdit() {
+      document.getElementById('choice').classList.add('hidden');
+      document.getElementById('tokenInput').classList.remove('hidden');
+      document.getElementById('tokenField').focus();
+    }
+
+    function generateEventsForm() {
+      const container = document.getElementById('eventsList');
+      container.innerHTML = '';
+      events.forEach(event => {
+        const card = document.createElement('div');
+        card.className = 'event-card';
+        card.innerHTML = `
+      <h4><i class="fas ${event.icon}"></i> ${event.name}</h4>
+      <p><strong>Team Size:</strong> ${event.teamSize}</p>
+      <p><strong>Classes:</strong> ${event.classes.length ? event.classes.join(', ') : 'All Classes'}</p>
+    `;
+        for (let i = 0; i < event.teamSize; i++) {
+          const group = document.createElement('div');
+          group.className = 'input-group';
+          group.innerHTML = `
+        <label>Participant ${i + 1} Name</label>
+        <input type="text" class="participant-input" data-event="${event.id}" data-index="${i}" placeholder="Full name">
+      `;
+          if (event.classes.length > 0) {
+            group.innerHTML += `<div class="class-input"><label>Class:</label><div class="radio-group">` +
+              event.classes.map(cls => `
+            <div class="radio-option">
+              <input type="radio" name="${event.id}-class-${i}" value="${cls}" id="${event.id}-${i}-cls${cls}" class="class-radio">
+              <label for="${event.id}-${i}-cls${cls}">Class ${cls}</label>
+            </div>`).join('') +
+              `</div></div>`;
+          } else {
+            group.innerHTML += `
+          <div class="class-input">
+            <label>Class</label>
+            <input type="number" placeholder="Class" min="1" max="12" class="class-input-field" data-event="${event.id}" data-index="${i}">
+          </div>
+        `;
+          }
+          card.appendChild(group);
+        }
+        container.appendChild(card);
+      });
+
+      document.querySelectorAll('.class-radio').forEach(radio => {
+        radio.addEventListener('mousedown', function () {
+          this.dataset.wasChecked = this.checked ? 'true' : 'false';
+        });
+        radio.addEventListener('click', function () {
+          if (this.dataset.wasChecked === 'true') {
+            this.checked = false;
+            this.dispatchEvent(new Event('change'));
+          }
+        });
+      });
+    }
+
+    function validateForm() {
+      const school = document.getElementById('schoolName').value.trim();
+      const email = document.getElementById('schoolEmail').value.trim();
+      const teacher = document.getElementById('teacherName').value.trim();
+      const teacherEmail = document.getElementById('teacherEmail').value.trim();
+      const emailRegex = /^\S+@\S+\.\S+$/;
+
+      if (!school || !email || !teacher || !teacherEmail || !emailRegex.test(email) || !emailRegex.test(teacherEmail)) {
+        showNotification('Please fill all fields with valid emails', true);
+        return false;
+      }
+
+      let hasTeam = false;
+      for (const event of events) {
+        let count = 0;
+        for (let i = 0; i < event.teamSize; i++) {
+          const input = document.querySelector(`.participant-input[data-event="${event.id}"][data-index="${i}"]`);
+          if (input?.value.trim()) count++;
+        }
+        if (count > 0 && count < event.teamSize) {
+          showNotification(`Complete all participants for ${event.name}`, true);
+          return false;
+        }
+        if (count === event.teamSize) hasTeam = true;
+      }
+
+      if (!hasTeam) {
+        showNotification('Register at least one complete team', true);
+        return false;
+      }
+
+      for (const event of events) {
+        for (let i = 0; i < event.teamSize; i++) {
+          const input = document.querySelector(`.participant-input[data-event="${event.id}"][data-index="${i}"]`);
+          if (input?.value.trim()) {
+            const radio = document.querySelector(`input[name="${event.id}-class-${i}"]:checked`);
+            const field = document.querySelector(`.class-input-field[data-event="${event.id}"][data-index="${i}"]`);
+            if (!radio && (!field || !field.value.trim())) {
+              showNotification('Enter/select class for all participants', true);
+              return false;
+            }
+          }
+        }
+      }
+
+      return true;
+    }
+    async function verifyTokenAndLoadForm() {
+
+      const token = document.getElementById('tokenField').value.trim();
+      if (!token) {
+        showNotification('Enter token to verify', true);
+        return;
+      }
+
+      try {
+        const response = await fetch('https://890e-2409-40d0-200f-2ff-cbc3-7f01-48e4-8b41.ngrok-free.app/fetch', {
+          method: 'POST', // or GET if your backend supports it
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ secret: token })
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.msg || 'Invalid token');
+        }
+
+        const data = await response.json();
+
+
+
+        // This creates all the inputs
+        generateEventsForm();
+
+        // Populate the form fields with fetched data
+        populateFormFields(data); // You need to implement this
+
+        document.getElementById('tokenInput').classList.add('hidden');
+        document.getElementById('registrationForm').classList.remove('hidden');
+        document.getElementById('submitBtn').classList.add('hidden');           // Hide Register button
+        document.getElementById('editSubmitBtn').classList.remove('hidden');    // Show Edit button
+
+
+        showNotification('Token verified. You can now edit registration.');
+
+      } catch (err) {
+        console.error(err);
+        showNotification('Token verification failed: ' + err.message, true);
+      }
+
+    }
+
+    function collectFormData() {
+      const form = {
+        school: document.getElementById('schoolName').value,
+        teacherIncharge: document.getElementById('teacherName').value,
+        email: document.getElementById('schoolEmail').value,
+        teacherEmail: document.getElementById('teacherEmail').value,
+        events: []
+      };
+
+      for (const event of events) {
+        const e = { kind: event.id, participants: [] };
+        for (let i = 0; i < event.teamSize; i++) {
+          const name = document.querySelector(`.participant-input[data-event="${event.id}"][data-index="${i}"]`)?.value.trim();
+          let cls = '';
+          if (event.classes.length > 0) {
+            cls = document.querySelector(`input[name="${event.id}-class-${i}"]:checked`)?.value;
+          } else {
+            cls = document.querySelector(`.class-input-field[data-event="${event.id}"][data-index="${i}"]`)?.value;
+          }
+          if (name) e.participants.push({ name, class: parseInt(cls) });
+        }
+        if (e.participants.length > 0) form.events.push(e);
+      }
+
+      return form;
+    }
+    function populateFormFields(data) {
+      document.getElementById('schoolName').value = data.school || '';
+      document.getElementById('schoolEmail').value = data.email || '';
+      document.getElementById('teacherName').value = data.teacherIncharge || '';
+      document.getElementById('teacherEmail').value = data.teacherEmail || '';
+
+      generateEventsForm(); // ensure inputs exist before populating
+
+      if (!Array.isArray(data.events)) return;
+
+      data.events.forEach(event => {
+        const eventId = typeof event.kind === "string" ? EVENT_IDS[event.kind] : event.kind;
+        event.participants.forEach((participant, index) => {
+          const nameInput = document.querySelector(`.participant-input[data-event="${eventId}"][data-index="${index}"]`);
+          if (nameInput) nameInput.value = participant.name;
+
+          const classVal = participant.class;
+
+          // Handle class input - either radio (for predefined) or number input (for open class)
+          const radio = document.querySelector(`input[name="${eventId}-class-${index}"][value="${classVal}"]`);
+          if (radio) {
+            radio.checked = true;
+          } else {
+            const field = document.querySelector(`.class-input-field[data-event="${eventId}"][data-index="${index}"]`);
+            if (field) field.value = classVal;
+          }
+        });
+      });
+    }
+
+
+    async function submitForm() {
+      if (!validateForm()) return;
+
+      const data = collectFormData();
+      const btn = document.getElementById('submitBtn');
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<span class="loading"></span> Processing...';
+
+      try {
+        const res = await fetch('https://890e-2409-40d0-200f-2ff-cbc3-7f01-48e4-8b41.ngrok-free.app/register', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        let result = {};
+
+        result = await res.json();
+
+        if (!res.ok) throw new Error(result.msg);
+        if (!result.secret) throw new Error('Token not received from server');
+
+        document.getElementById('registrationForm').classList.add('hidden');
+        document.getElementById('tokenDisplay').classList.remove('hidden');
+        document.getElementById('generatedToken').textContent = result.secret;
+        showNotification('Registration submitted successfully!');
+      } catch (err) {
+        console.error(err);
+        showNotification('Error: ' + err.message, true);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = original;
+      }
+    }
+
+    async function handleEditTokenSubmit() {
+      const token = document.getElementById('tokenField').value.trim();
+      if (!token) {
+        showNotification('Enter token to edit registration', true);
+        return;
+      }
+      if (!validateForm()) return;
+
+      const payload = {
+        secret: token,
+        updated: collectFormData()
+      };
+
+      try {
+        const res = await fetch('https://890e-2409-40d0-200f-2ff-cbc3-7f01-48e4-8b41.ngrok-free.app/amend', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        try {
+          result = await res.json();
+        } catch (e) {
+          result.msg = "Empty or invalid JSON from server";
+        }
+        if (!res.ok) throw new Error(result.msg);
+        showNotification('Registration updated successfully!');
+      } catch (err) {
+        console.error(err);
+        showNotification('Error: ' + err.message, true);
+      }
+    }
+  </script>
+</body>
+
+</html>
