@@ -1,7 +1,7 @@
 document.fonts.ready.then(() => {
   tsParticles.load("particles-js", {
     particles: {
-      number: { value: 10 },
+      number: { value: 7 },
       color: { value: "#FFFFFF" }, // Bright white
       shape: {
         type: "char",
@@ -26,16 +26,16 @@ document.fonts.ready.then(() => {
               "ZEN OF CODE"
             ],
             font: "Pixelify Sans",
-            style: "normal",
-            weight: "150",
+            style: "",
+            weight: "300",
           }
         }
       },
-      opacity: { value: 0.4, random: true },
-      size: { value: 14, random: true },
+      opacity: { value: 0.3},
+      size: { value: 8, random: true },
       move: {
         enable: true,
-        speed: 3,
+        speed: 2,
         direction: "none", // free/random movement
         random: false,
         straight: false,
