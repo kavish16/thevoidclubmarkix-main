@@ -1,7 +1,15 @@
 document.fonts.ready.then(() => {
+  // Detect screen width and set particle count accordingly
+  let particleCount = 7; // default for desktop/tablet
+  if (window.innerWidth <= 768) {
+    particleCount = 5; // phones
+  } else if (window.innerWidth >= 1200) {
+    particleCount = 10; // very large screens
+  }
+
   tsParticles.load("particles-js", {
     particles: {
-      number: { value: 7 },
+      number: { value: particleCount },
       color: { value: "#FFFFFF" }, // Bright white
       shape: {
         type: "char",
@@ -31,8 +39,8 @@ document.fonts.ready.then(() => {
           }
         }
       },
-      opacity: { value: 0.3},
-      size: { value: 8, random: true },
+      opacity: { value: 0.3 },
+      size: { value: 8},
       move: {
         enable: true,
         speed: 2,
@@ -45,7 +53,6 @@ document.fonts.ready.then(() => {
     interactivity: {
       events: {
         onhover: { enable: true, mode: "repulse" }
-        
       },
       modes: {
         repulse: { distance: 100, duration: 0.4 },
@@ -55,5 +62,3 @@ document.fonts.ready.then(() => {
     retina_detect: true
   });
 });
-
-
