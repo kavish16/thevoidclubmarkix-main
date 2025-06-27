@@ -738,6 +738,8 @@
       SrRobotics: 13, Quiz: 14, Postux: 15
     };
 
+    const API = 'https://0550-2a09-bac1-3680-1c8-00-2a8-45.ngrok-free.app/';
+
     const events = [
       { id: EVENT_IDS.Postux, name: 'Tux Tales', classes: [2, 3], teamSize: 2, icon: 'fa-terminal' },
       { id: EVENT_IDS.Scratch, name: 'Sprite Showdown', classes: [4, 5], teamSize: 1, icon: 'fa-gamepad' },
@@ -896,7 +898,7 @@
       }
 
       try {
-        const response = await fetch('https://890e-2409-40d0-200f-2ff-cbc3-7f01-48e4-8b41.ngrok-free.app/fetch', {
+        const response = await fetch(API + '/fetch', {
           method: 'POST', // or GET if your backend supports it
           headers: {
             'Content-Type': 'application/json'
@@ -1001,7 +1003,7 @@
       btn.innerHTML = '<span class="loading"></span> Processing...';
 
       try {
-        const res = await fetch('https://890e-2409-40d0-200f-2ff-cbc3-7f01-48e4-8b41.ngrok-free.app/register', {
+        const res = await fetch(API + '/register', {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
@@ -1040,7 +1042,7 @@
       };
 
       try {
-        const res = await fetch('https://890e-2409-40d0-200f-2ff-cbc3-7f01-48e4-8b41.ngrok-free.app/amend', {
+        const res = await fetch(API + '/amend', {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)

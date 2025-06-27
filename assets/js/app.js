@@ -8,20 +8,26 @@ document.fonts.ready.then(() => {
         options: {
           char: {
             value: [
-              "function()", 
-              "console.log()", 
-              "let i = 0;", 
-              "<div></div>", 
-              "const x = 10;", 
-              "return true;", 
-              "import React", 
-              "if (x > y)", 
-              "for(let j=0)", 
-              "=> arrow fn"
+              "GROUP DISCUSSION", 
+              "TUX TALES", 
+              "PYRANK SHOWDOWN", 
+              "SPRITE SHOWDOWN", 
+              "BYTE THE RHYTHM", 
+              "WEBBED", 
+              "LENS AND LAYERS", 
+              "MAZE AND MAYHEM", 
+              "REEL RUMBLE", 
+              "COGNITOFLOW",
+              "FRAMEWARS",
+              "OVERCLOCKED",
+              "QUIZ",
+              "SHERLOCKED",
+              "SURPRISE",
+              "ZEN OF CODE"
             ],
             font: "Pixelify Sans",
             style: "normal",
-            weight: "200",
+            weight: "150",
           }
         }
       },
