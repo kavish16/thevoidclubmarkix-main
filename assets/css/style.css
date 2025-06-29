@@ -418,7 +418,7 @@ h6 {
   z-index: 99;
   opacity: 0;
   visibility: hidden;
-  background-image: url(/assets/img/artistic-blurry-colorful-wallpaper-background.jpg);
+  
   transition: 0.3s;
 }
 
@@ -505,7 +505,7 @@ h6 {
   right: 0;
   left: 0;
   bottom: 0;
-  background-image: url(/assets/img/artistic-blurry-colorful-wallpaper-background.jpg);
+  
   transition: 0.3s;
   z-index: 999;
 }
@@ -524,7 +524,7 @@ h6 {
   bottom: 15px;
   left: 15px;
   padding: 10px 0;
-  background-image: url(/assets/img/artistic-blurry-colorful-wallpaper-background.jpg);
+  
   overflow-y: auto;
   transition: 0.3s;
 }
@@ -613,7 +613,7 @@ h6 {
   right: 0;
   left: 0;
   bottom: 0;
-  background-image: url(/assets/img/artistic-blurry-colorful-wallpaper-background.jpg);
+  
   transition: 0.3s;
   z-index: 999;
   height: 100vh;
